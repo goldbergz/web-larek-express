@@ -16,21 +16,21 @@ export interface IProduct {
 const productSchema = new mongoose.Schema<IProduct>({
   title: {
     type: String,
-    required: true,
+    required: [true, 'Поле "title" должно быть заполнено'],
     unique: true,
-    minlength: 2,
-    maxlength: 30,
+    minlength: [2, 'Минимальная длина поля "title" - 2'],
+    maxlength: [30, 'Максимальная длина поля "title" - 30'],
   },
   image: {
     type: {
-      fileName: { type: String, required: true },
-      originalName: { type: String, required: true },
+      fileName: { type: String, required: [true, 'Поле "image.fileName" должно быть заполнено'] },
+      originalName: { type: String, required: [true, 'Поле "image.originalName" должно быть заполнено'] },
     },
-    required: true,
+    required: [true, 'Поле "image" должно быть заполнено'],
   },
   category: {
     type: String,
-    required: true,
+    required: [true, 'Поле "category" должно быть заполнено'],
   },
   description: {
     type: String,

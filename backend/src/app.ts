@@ -8,6 +8,7 @@ import productRouter from './routes/products';
 import orderRouter from './routes/order';
 import NotFoundError from './errors/not-found';
 import errorHandler from './middlewares/error-handler';
+import { requestLogger, errorLogger } from './middlewares/logger';
 
 dotenv.config();
 
@@ -23,6 +24,8 @@ const { PORT = 3000, DB_ADDRESS = 'mongodb://127.0.0.1:27017/weblarek' } = proce
 
 mongoose.connect(DB_ADDRESS);
 
+app.use(requestLogger);
+
 app.use('/product', productRouter);
 app.use('/order', orderRouter);
 
@@ -30,6 +33,7 @@ app.use((_req, _res, next) => {
   next(new NotFoundError('Маршрут не найден'));
 });
 
+app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
 
