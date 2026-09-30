@@ -1,16 +1,14 @@
-import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import path from 'path';
 import { errors } from 'celebrate';
+import { PORT, DB_ADDRESS } from './config';
 import productRouter from './routes/products';
 import orderRouter from './routes/order';
 import NotFoundError from './errors/not-found';
 import errorHandler from './middlewares/error-handler';
 import { requestLogger, errorLogger } from './middlewares/logger';
-
-dotenv.config();
 
 const app = express();
 
@@ -20,9 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-const { PORT = 3000, DB_ADDRESS = 'mongodb://127.0.0.1:27017/weblarek' } = process.env;
-
-mongoose.connect(DB_ADDRESS);
+mongoose.connect(DB_ADDRESS as string);
 
 app.use(requestLogger);
 
