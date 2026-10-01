@@ -11,4 +11,6 @@ export const {
   AUTH_REFRESH_TOKEN_SECRET = '',
   AUTH_ACCESS_TOKEN_EXPIRY = '10m',
   AUTH_REFRESH_TOKEN_EXPIRY = '7d',
+  UPLOAD_PATH = 'images',
+  UPLOAD_PATH_TEMP = 'temp',
 } = process.env;

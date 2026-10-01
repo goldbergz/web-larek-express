@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { removeImageFile } from '../utils/files';
 
 export interface IProductImage {
   fileName: string;
@@ -41,6 +42,12 @@ const productSchema = new mongoose.Schema<IProduct>({
     default: null,
     required: false,
   },
+});
+
+productSchema.post('findOneAndDelete', async (doc) => {
+  if (doc?.image?.fileName) {
+    await removeImageFile(doc.image.fileName);
+  }
 });
 
 export default mongoose.model<IProduct>('product', productSchema);
