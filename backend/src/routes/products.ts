@@ -8,7 +8,7 @@ import { validateCreateProduct, validateUpdateProduct } from '../middlewares/val
 const router = Router();
 
 router.get('/', getProducts);
-router.post('/', validateCreateProduct, createProduct);
+router.post('/', auth, validateCreateProduct, createProduct);
 router.patch('/:productId', auth, validateUpdateProduct, updateProduct);
 router.delete('/:productId', auth, deleteProduct);
 
