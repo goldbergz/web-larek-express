@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { faker } from '@faker-js/faker';
-import mongoose, { Error as MongooseError } from 'mongoose';
+import mongoose from 'mongoose';
 import Product from '../models/product';
 import BadRequestError from '../errors/bad-request';
 
@@ -38,10 +38,6 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
 
     res.send({ id: faker.string.uuid(), total });
   } catch (err) {
-    if (err instanceof MongooseError.CastError) {
-      next(new BadRequestError(`Товар с id ${err.value} не найден`));
-      return;
-    }
     next(err);
   }
 };

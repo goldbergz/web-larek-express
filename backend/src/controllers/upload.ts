@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { UPLOAD_PATH } from '../config';
+import { UPLOAD_PATH_TEMP } from '../config';
 import BadRequestError from '../errors/bad-request';
 
 // eslint-disable-next-line import/prefer-default-export
@@ -9,7 +9,7 @@ export const uploadFile = (req: Request, res: Response, next: NextFunction) => {
     return;
   }
   res.send({
-    fileName: `/${UPLOAD_PATH}/${req.file.filename}`,
+    fileName: `/${UPLOAD_PATH_TEMP}/${req.file.filename}`,
     originalName: req.file.originalname,
   });
 };

@@ -8,10 +8,10 @@ import BadRequestError from '../errors/bad-request';
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
 const ALLOWED_MIME_TYPES = [
-  'image/jpeg',
   'image/png',
+  'image/jpg',
+  'image/jpeg',
   'image/gif',
-  'image/webp',
   'image/svg+xml',
 ];
 

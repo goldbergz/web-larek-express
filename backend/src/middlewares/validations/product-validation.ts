@@ -16,11 +16,20 @@ export const validateCreateProduct = celebrate({
 });
 
 export const validateUpdateProduct = celebrate({
+  params: Joi.object().keys({
+    productId: Joi.string().hex().length(24).required(),
+  }),
   body: Joi.object().keys({
     title: Joi.string().min(2).max(30),
     image: imageSchema,
     category: Joi.string(),
     description: Joi.string().allow(''),
     price: Joi.number().allow(null),
+  }),
+});
+
+export const validateDeleteProduct = celebrate({
+  params: Joi.object().keys({
+    productId: Joi.string().hex().length(24).required(),
   }),
 });

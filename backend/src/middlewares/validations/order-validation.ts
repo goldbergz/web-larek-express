@@ -1,5 +1,6 @@
 import { celebrate, Joi } from 'celebrate';
 
+// eslint-disable-next-line import/prefer-default-export
 export const validateCreateOrder = celebrate({
   body: Joi.object().keys({
     payment: Joi.string().valid('card', 'online').required(),
